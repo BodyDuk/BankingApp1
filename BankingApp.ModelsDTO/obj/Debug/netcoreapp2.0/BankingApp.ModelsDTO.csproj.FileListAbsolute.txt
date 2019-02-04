@@ -1,0 +1,9 @@
+D:\TestApps\TestTask1\BankingApp1\BankingApp.ModelsDTO\bin\Debug\netcoreapp2.0\BankingApp.ModelsDTO.deps.json
+D:\TestApps\TestTask1\BankingApp1\BankingApp.ModelsDTO\bin\Debug\netcoreapp2.0\BankingApp.ModelsDTO.dll
+D:\TestApps\TestTask1\BankingApp1\BankingApp.ModelsDTO\bin\Debug\netcoreapp2.0\BankingApp.ModelsDTO.pdb
+D:\TestApps\TestTask1\BankingApp1\BankingApp.ModelsDTO\obj\Debug\netcoreapp2.0\BankingApp.ModelsDTO.csprojResolveAssemblyReference.cache
+D:\TestApps\TestTask1\BankingApp1\BankingApp.ModelsDTO\obj\Debug\netcoreapp2.0\BankingApp.ModelsDTO.csproj.CoreCompileInputs.cache
+D:\TestApps\TestTask1\BankingApp1\BankingApp.ModelsDTO\obj\Debug\netcoreapp2.0\BankingApp.ModelsDTO.AssemblyInfoInputs.cache
+D:\TestApps\TestTask1\BankingApp1\BankingApp.ModelsDTO\obj\Debug\netcoreapp2.0\BankingApp.ModelsDTO.AssemblyInfo.cs
+D:\TestApps\TestTask1\BankingApp1\BankingApp.ModelsDTO\obj\Debug\netcoreapp2.0\BankingApp.ModelsDTO.dll
+D:\TestApps\TestTask1\BankingApp1\BankingApp.ModelsDTO\obj\Debug\netcoreapp2.0\BankingApp.ModelsDTO.pdb
