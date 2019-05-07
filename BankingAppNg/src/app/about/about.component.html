@@ -1,0 +1,21 @@
+<h1>Transactions List</h1>
+<table id="customers">
+    <thead>
+        <tr>
+            <td>Sender name</td>
+            <td>Recipient name</td>
+            <td>Operation</td>
+            <td>Amount</td>
+            <td>Date</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let tr of transactions">
+            <td>{{tr.SenderName}}</td>
+            <td>{{tr.RecipientName}}</td>
+            <td>{{tr.OperationName}}</td>
+            <td>{{tr.Amount}}</td>
+            <td>{{tr.TimeStemp}}</td>
+        </tr>
+    </tbody>
+</table>

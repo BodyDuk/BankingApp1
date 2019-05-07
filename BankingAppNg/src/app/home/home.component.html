@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+      <div class="column">
+        <h1>Hi {{this.user.Name}}</h1>
+        <h3>Your amount is {{this.user.Amount}}$</h3>
+        <div class="row">
+            <div class="column">
+                <button type="button" (click)="deposit()" class="btn btn-info md-trigger">Deposit </button>
+            </div>  
+            <div class="column">
+                <input [(ngModel)]="depositAmount" type="number" min="1">
+            </div>    
+        </div>  
+        <br>   
+        <div class="row">
+            <div class="column">
+                <button type="button"(click)="withdraw()" class="btn btn-warning md-trigger">Withdraw</button>
+            </div>  
+            <div class="column">
+                <input [(ngModel)]="withdrawAmount" type="number" min="1">
+            </div>    
+        </div>    
+      </div>
+      <div class="column">
+        <h1>Users List</h1>
+        <table *ngIf="tableMode; else create" class="table table-striped">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Amount</td>
+                    <td>Operation</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usr of users; let i = index">
+                    <td>{{usr.Name}}</td>
+                    <td>{{usr.Amount}}</td>
+                    <td>
+                        <div class="row">
+                            <div class="column">
+                                <button class="btn btn-sm btn-primary" (click)="transfer(usr,i)" >Transfer</button>
+                            </div>  
+                            <div class="column">
+                                <input [(ngModel)]="transferAmount[i]" type="number" min="1">
+                            </div>    
+                        </div>    
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+</div>

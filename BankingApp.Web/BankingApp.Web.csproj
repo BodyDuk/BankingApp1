@@ -5,19 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.0.0-preview.19074.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\BankingApp.DataAccessLayer\BankingApp.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\BankingApp.DataAccess\BankingApp.DataAccess.csproj" />
+    <ProjectReference Include="..\BankingApp.ModelsDTO\BankingApp.ModelsDTO.csproj" />
     <ProjectReference Include="..\BankingApp.Models\BankingApp.Models.csproj" />
-    <ProjectReference Include="..\BankingApp.DataAccessLayer\BankingApp.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\BankingApp.Services\BankingApp.Services.csproj" />
   </ItemGroup>
 
 </Project>

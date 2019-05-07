@@ -1,47 +1,64 @@
-﻿using System;
-using BankingApp.DataAccessLayer.UOW;
-using DataAccessLayer;
+﻿using BankingApp.Services.Implementation;
+using BankingApp.Services.Interface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Models;
+using Microsoft.IdentityModel.Tokens;
+using BankingApp.Services.Helpful;
+using BankingApp.DataAccess.Uow;
+using BankingApp.DataAccess.Reposiroty;
+using BankingApp.DataAccess.UowFactory;
 
-namespace TestTask1
+namespace BankingApp
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IUserRepositiry, UserRepositiry>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddScoped<IBankingUow, BankingUow>();
+            services.AddScoped<IBankingUowFactory, BankingUowFactory>();
+            services.AddScoped<ITransactionService, TransactionService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserIdentityService, UserIdentityService>();
+            services.AddScoped<IBankingService, BankingService>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.RequireHttpsMetadata = false;
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidIssuer = Configurator.Issuer,
+                            ValidateAudience = true,
+                            ValidAudience = Configurator.Audience,
+                            ValidateLifetime = true,
+                            IssuerSigningKey = Configurator.GetSymmetricSecurityKey(),
+                            ValidateIssuerSigningKey = true,
+                        };
+                    });
+
+            services.AddMvc();
+            services.AddCors(options => options.AddPolicy("AngularCors", builder => builder
+                  .WithOrigins(Configurator.NgUrl)
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public async System.Threading.Tasks.Task ConfigureAsync(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
 
-            //using (BankContext db = new BankContext())
-            //{
-            //    User user1 = new User { Name = "Bohdan", Money = 0, UserID = Guid.NewGuid(), TimeStemp = DateTime.Now };
-
-            //    db.User.Add(user1);
-
-            //    db.SaveChanges();
-            //}
-
-
-            BankingUOW bankingUOW = new BankingUOW();
-
-            User user =  await bankingUOW.User.Get(Guid.Parse("0475cfbc-45f7-43e4-b9de-32410bb6f28e"));
-
-            app.Run(async (context) =>
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseCors("AngularCors");
+            app.UseAuthentication();
+            app.UseMvc(routes =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                routes.MapRoute("default", "{controller=User}/{action=Get}/{id?}");
             });
         }
     }
